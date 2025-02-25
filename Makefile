@@ -1,7 +1,7 @@
 .PHONY: lint
 lint:
 	@echo "Linting start"
-	pylint .\internal
+	.venv/Scripts/pylint --rcfile=./.pylintrc .\internal
 	@echo "Linting completed"
 
 .PHONY: install
