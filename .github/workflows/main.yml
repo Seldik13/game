@@ -1,4 +1,4 @@
-name: CI pipeline
+name: Автоматическая проверка 👀
 
 on:
   workflow_dispatch:
@@ -15,9 +15,11 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: "3.11"
-      - name: Install dependencies
+      - name: Установка зависимостей ⬇️
         run: |
           python -m pip install --upgrade pip
           pip install -r ./.requirements
-      - name: Pylint
+      - name: Pylint | Проверка линтером 🔎
         run: pylint ./internal --fail-under 7.5
+      - name: Ruff | Проверка форматтером 🔎
+        run: ruff check ./internal
