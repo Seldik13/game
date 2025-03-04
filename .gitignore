@@ -1,3 +1,6 @@
 /.venv/*
 /.vscode/*
 /.idea/*
+main.spec
+/.dist/*
+/.build/*
