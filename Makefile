@@ -18,4 +18,4 @@ format:
 
 .PHONY: build
 build:
-	.venv/Scripts/pyinstaller --onefile --windowed --add-data "internal/assets;assets" internal/main.py 
+	.venv/Scripts/pyinstaller --onefile --windowed --hidden-import pygame --add-data "internal/assets;assets" internal/main.py

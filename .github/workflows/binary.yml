@@ -1,0 +1,51 @@
+name: Сборка бинарника
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:  
+
+jobs:
+  code_analyzer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python "3.11"
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.11"
+      - name: Установка зависимостей ⬇️
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r ./.requirements
+      - name: Pylint | Проверка линтером 🔎
+        run: pylint ./internal --fail-under 7.5
+      - name: Ruff | Проверка форматтером 🔎
+        run: ruff check ./internal
+
+  build_binary:
+    runs-on: windows-latest
+    needs: code_analyzer 
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python "3.11"
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.11"
+      - name: Установка зависимостей ⬇️
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r ./.requirements
+          pip install pyinstaller
+          pip install pygame
+      - name: Сборка бинарника 🏗️
+        run: |
+          pyinstaller --onefile --windowed --hidden-import pygame --add-data "internal/assets;assets" internal/main.py 
+      - name: Upload Windows binary 📤
+        uses: actions/upload-artifact@v4
+        with:
+          name: binary
+          path: ./dist/main.exe
