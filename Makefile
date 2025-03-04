@@ -15,3 +15,7 @@ format:
 	@echo "Start formatting"
 	.venv/Scripts/ruff check ./internal --fix
 	.venv/Scripts/ruff format ./internal
+
+.PHONY: build
+build:
+	.venv/Scripts/pyinstaller --onefile --windowed --add-data "internal/assets;assets" internal/main.py 
