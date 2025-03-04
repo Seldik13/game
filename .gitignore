@@ -5,4 +5,17 @@
 /internal/__pycache__/*
 main.spec
 /.dist/*
+dist/*
+build/*
 /.build/*
+/.ruff_cache/*
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+__pycache__/
+*.py[cod]
+*$py.class
+venv.bak/
