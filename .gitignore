@@ -1,6 +1,8 @@
 /.venv/*
 /.vscode/*
 /.idea/*
+/__pycache__/*
+/internal/__pycache__/*
 main.spec
 /.dist/*
 /.build/*
