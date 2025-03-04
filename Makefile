@@ -1,14 +1,14 @@
 .PHONY: lint
 lint:
 	@echo "Linting start"
-	.venv/Scripts/pylint --rcfile=./.pylintrc ./internal
+	.venv/Scripts/pylint --extension-pkg-whitelist=pygame --rcfile=./.pylintrc ./internal
 	.venv/Scripts/ruff check ./internal
 	@echo "Linting completed"
 
 .PHONY: install
 install:
 	@echo "Installing dependencies"
-	.venv/Scripts/pip install -r ./.requirements
+	.venv/Scripts/pip install  -r ./.requirements
 
 .PHONY: format
 format:

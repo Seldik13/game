@@ -22,7 +22,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r ./.requirements
       - name: Pylint | Проверка линтером 🔎
-        run: pylint ./internal --fail-under 7.5
+        run: pylint --extension-pkg-whitelist=pygame  ./internal --fail-under 7.5
       - name: Ruff | Проверка форматтером 🔎
         run: ruff check ./internal
 
